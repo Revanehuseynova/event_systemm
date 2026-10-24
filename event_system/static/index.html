@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Universitet Tədbirləri</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>🎓 Universitet Tədbirləri</h1>
+    <nav>
+      <button data-tab="events" class="active">Tədbirlər</button>
+      <button data-tab="form">Yeni tədbir</button>
+      <button data-tab="dashboard">Statistika</button>
+    </nav>
+    <div id="userBox"></div>
+  </header>
+
+  <div id="toast" role="alert"></div>
+
+  <main>
+    <section id="tab-events">
+      <div class="filters">
+        <input id="fQ" placeholder="Ada görə axtar…">
+        <select id="fCat"><option value="">Bütün kateqoriyalar</option></select>
+        <input id="fLoc" placeholder="Yer">
+        <label>Başlama <input type="date" id="fFrom"></label>
+        <label>Bitmə <input type="date" id="fTo"></label>
+        <button id="fReset" class="secondary">Sıfırla</button>
+      </div>
+      <div id="eventList" class="grid"></div>
+    </section>
+
+    <section id="tab-form" hidden>
+      <h2 id="formTitle">Yeni tədbir</h2>
+      <div class="form">
+        <input type="hidden" id="eId">
+        <label>Ad* <input id="eTitle" maxlength="150"></label>
+        <label>Kateqoriya* <select id="eCat"></select></label>
+        <label>Tarix* <input type="date" id="eDate"></label>
+        <label>Saat* <input type="time" id="eTime"></label>
+        <label>Yer* <input id="eLoc" maxlength="150"></label>
+        <label>Maksimum iştirakçı* <input type="number" id="eCap" min="1"></label>
+        <label class="full">Təsvir <textarea id="eDesc" rows="3"></textarea></label>
+        <div class="full">
+          <button id="eSave">Yadda saxla</button>
+          <button id="eCancel" class="secondary">Ləğv et</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="tab-dashboard" hidden>
+      <div id="cards" class="cards"></div>
+      <div class="two">
+        <div><h3>Ən çox qeydiyyat olan tədbirlər</h3><div id="topChart"></div></div>
+        <div><h3>Kateqoriyalar üzrə təhlil</h3><div id="catChart"></div></div>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="loginDlg">
+    <h2>Daxil ol</h2>
+    <p>Ad və e-poçtunuzu daxil edin (yeni istifadəçi avtomatik yaradılır).</p>
+    <label>Ad və soyad <input id="lName"></label>
+    <label>E-poçt <input id="lEmail" type="email"></label>
+    <p id="lErr" class="err"></p>
+    <button id="lGo">Davam et</button>
+  </dialog>
+
+  <dialog id="partDlg">
+    <h2 id="partTitle"></h2>
+    <ul id="partList"></ul>
+    <button onclick="document.getElementById('partDlg').close()">Bağla</button>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
